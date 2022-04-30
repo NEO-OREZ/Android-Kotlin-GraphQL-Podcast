@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-const val BASE_URL = "https://api.currentsapi.services"
+const val BASE_URL = "https://api.rss2json.com/"
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,13 +53,14 @@ class MainActivity : AppCompatActivity() {
             .build()
             .create(APIRequest::class.java)
 
+
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val response = api.getNews()
 
-                for (article in response.news) {
+                for (article in response.items) {
                     Log.d("MainActivity", "Result + $article")
-                    addToList(article.title, article.description, article.image, article.url)
+                    addToList(article.title, article.description, article.thumbnail, article.guid)
                 }
 
                 //updates ui when data has been retrieved
@@ -72,7 +73,6 @@ class MainActivity : AppCompatActivity() {
                 Log.d("MainActivity", e.toString())
                 withContext(Dispatchers.Main) {
                     attemptRequestAgain(seconds)
-
                 }
             }
 

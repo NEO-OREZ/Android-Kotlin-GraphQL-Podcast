@@ -1,4 +1,5 @@
 package com.federicocotogno.retro2newslist.adapters
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -16,9 +17,7 @@ class RecyclerAdapter(
     private var titles: List<String>,
     private var details: List<String>,
     private var images: List<String>,
-    private var links: List<String>
-) :
-    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+    private var links: List<String>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -30,7 +29,6 @@ class RecyclerAdapter(
         init {
             itemView.setOnClickListener { v: View ->
                 val position: Int = adapterPosition
-
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.data = Uri.parse(links[position])
                 startActivity(itemView.context, intent,null)
