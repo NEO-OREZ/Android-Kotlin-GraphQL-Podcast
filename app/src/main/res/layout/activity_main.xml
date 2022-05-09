@@ -39,11 +39,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/progressBar"
         android:layout_centerInParent="true"
-        android:text="3"
         android:layout_marginTop="10dp"
-        android:textStyle="italic"
+        android:text="3"
         android:textColor="@android:color/white"
-        android:visibility="gone"/>
+        android:textStyle="italic"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

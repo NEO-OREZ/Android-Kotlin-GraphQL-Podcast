@@ -1,4 +1,4 @@
-package com.federicocotogno.retro2newslist
+package com.federicocotogno.JsonRetroSpotify
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

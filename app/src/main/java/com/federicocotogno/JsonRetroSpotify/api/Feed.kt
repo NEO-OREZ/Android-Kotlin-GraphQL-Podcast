@@ -1,4 +1,4 @@
-package com.federicocotogno.retro2newslist.api
+package com.federicocotogno.JsonRetroSpotify.api
 
 data class Feed(
     val author: String,

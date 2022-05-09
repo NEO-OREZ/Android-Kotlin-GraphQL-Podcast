@@ -1,5 +1,5 @@
-package com.federicocotogno.retro2newslist.adapters
-import android.content.Context
+package com.federicocotogno.JsonRetroSpotify.adapters
+
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.federicocotogno.retro2newslist.R
+import com.federicocotogno.JsonRetroSpotify.R
 
 class RecyclerAdapter(
     private var titles: List<String>,
     private var details: List<String>,
     private var images: List<String>,
+    private var date : List<String>,
     private var links: List<String>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -24,6 +24,7 @@ class RecyclerAdapter(
         val itemTitle: TextView = itemView.findViewById(R.id.tv_title)
         val itemDetail: TextView = itemView.findViewById(R.id.tv_description)
         val itemPicture: ImageView = itemView.findViewById(R.id.iv_image)
+        val itemDate : TextView = itemView.findViewById(R.id.tv_Date)
 
         //takes care of click events
         init {
@@ -48,6 +49,7 @@ class RecyclerAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemTitle.text = titles[position]
         holder.itemDetail.text = details[position]
+        holder.itemDate.text = date[position]
 
         Glide.with(holder.itemPicture)
             .load(images[position])

@@ -1,7 +1,6 @@
-package com.federicocotogno.retro2newslist
+package com.federicocotogno.JsonRetroSpotify
 
-import com.federicocotogno.retro2newslist.api.JsonPodcast
-import com.federicocotogno.retro2newslist.api.NewsJSON
+import com.federicocotogno.JsonRetroSpotify.api.JsonPodcast
 import retrofit2.http.GET
 
 interface APIRequest {

@@ -1,4 +1,4 @@
-package com.federicocotogno.retro2newslist
+package com.federicocotogno.JsonRetroSpotify
 
 import org.junit.Test
 

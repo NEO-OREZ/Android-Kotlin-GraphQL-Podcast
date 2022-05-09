@@ -1,13 +1,12 @@
-package com.federicocotogno.retro2newslist
+package com.federicocotogno.JsonRetroSpotify
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.federicocotogno.retro2newslist.adapters.RecyclerAdapter
+import com.federicocotogno.JsonRetroSpotify.adapters.RecyclerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -27,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private var descList = mutableListOf<String>()
     private var imagesList = mutableListOf<String>()
     private var linksList = mutableListOf<String>()
+    private var dateList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
                 for (article in response.items) {
                     Log.d("MainActivity", "Result + $article")
-                    addToList(article.title, article.description, article.thumbnail, article.guid)
+                    addToList(article.title, article.description, article.thumbnail, article.pubDate, article.guid)
                 }
 
                 //updates ui when data has been retrieved
@@ -75,7 +75,6 @@ class MainActivity : AppCompatActivity() {
                     attemptRequestAgain(seconds)
                 }
             }
-
         }
     }
 
@@ -98,14 +97,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpRecyclerView() {
         rv_recyclerView.layoutManager = LinearLayoutManager(applicationContext)
-        rv_recyclerView.adapter = RecyclerAdapter(titlesList, descList, imagesList, linksList)
+        rv_recyclerView.adapter = RecyclerAdapter(titlesList, descList, imagesList, dateList, linksList)
     }
 
     //adds the items to our recyclerview
-    private fun addToList(title: String, description: String, image: String, link: String) {
-        linksList.add(link)
+    private fun addToList(title: String, description: String, image: String, date:String, link: String) {
         titlesList.add(title)
         descList.add(description)
         imagesList.add(image)
+        dateList.add(date)
+        linksList.add(link)
+
     }
 }
