@@ -3,13 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.federicocotogno.retro2newslist"
+        applicationId "com.federicocotogno.JsonRetroSpotify"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -57,5 +57,9 @@ dependencies {
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+    //added
+    implementation "com.expediagroup:graphql-kotlin-schema-generator:5.4.1"
+    implementation "com.google.code.gson:gson:2.8.5"
 
 }
