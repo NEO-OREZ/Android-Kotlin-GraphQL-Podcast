@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // makeAPIRequest()
         GlobalScope.launch(Dispatchers.IO) { CallApollo() }
         rv_recyclerView.layoutManager = LinearLayoutManager(this)
     }
@@ -58,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     }
     suspend fun ApolloData(token0:String) {
         val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(AuthorizationInterceptor0(token0))
+            .addInterceptor(AuthorizationInterceptor(token0))
             .build()
         val apolloClient1 = ApolloClient.Builder()
             .serverUrl(BASEURL)
@@ -82,24 +81,12 @@ class MainActivity : AppCompatActivity() {
             val  ResponseData = responseData.data!!.podcasts!!.data
             Log.d("apollo3", ResponseData.toString())
 
-            if (ResponseData != null) {
-                launche.addAll(ResponseData)
-                adapter0.notifyDataSetChanged()
-            }
-
+            launche.addAll(ResponseData)
+            adapter0.notifyDataSetChanged()
             rv_recyclerView.adapter = RecyclerAdapter(ResponseData)
         }
     }
 }
- class AuthorizationInterceptor0(private val context: String) : Interceptor {
-     override fun intercept(chain: Interceptor.Chain): Response {
-         val request = chain.request().newBuilder()
-             .addHeader("Authorization", context)
-             .build()
-         return chain.proceed(request)
-     }
- }
-
 
 //class AuthorizationInterceptor(val token: String) : HttpInterceptor {
 //    override suspend fun intercept(request: HttpRequest, chain: HttpInterceptorChain): HttpResponse {
