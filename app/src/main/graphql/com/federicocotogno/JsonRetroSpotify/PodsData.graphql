@@ -1,0 +1,10 @@
+query DataQuery($searchTerm: String, $sort: PodcastSort, $first: Int) {
+    podcasts(searchTerm: $searchTerm, sort: $sort, first: $first) {
+       data {
+           title
+           description
+           imageUrl
+           url
+       }
+    }
+}

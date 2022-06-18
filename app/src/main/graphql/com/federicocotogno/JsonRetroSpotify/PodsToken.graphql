@@ -1,0 +1,7 @@
+mutation TokenMutation($input: AccessTokenRequest!) {
+    requestAccessToken(input: $input) {
+        access_token
+        token_type
+        expires_in
+    }
+}
