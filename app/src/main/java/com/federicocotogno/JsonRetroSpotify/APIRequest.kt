@@ -1,11 +1,11 @@
 package com.federicocotogno.JsonRetroSpotify
 
-import com.federicocotogno.JsonRetroSpotify.api.JsonPodcast
+import com.federicocotogno.JsonRetroSpotify.api.Podcasts
 import retrofit2.http.GET
 
 interface APIRequest {
 
     @GET("v1/api.json?rss_url=https://tehranpodcast.ir/feed/")
-    suspend fun getNews() : JsonPodcast
+    suspend fun getNews() : Podcasts
 
 }

@@ -1,6 +1,13 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+
+plugins {
+    id("com.apollographql.apollo3").version("3.0.0")
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'com.android.application'
+}
+apollo {
+    packageName.set("om.federicocotogno.JsonRetroSpotify")
+}
 
 android {
     compileSdkVersion 30
@@ -60,6 +67,9 @@ dependencies {
 
     //added
     implementation "com.expediagroup:graphql-kotlin-schema-generator:5.4.1"
-    implementation "com.google.code.gson:gson:2.8.5"
+    implementation "com.google.code.gson:gson:2.8.9"
 
+    //apollo
+    implementation "com.apollographql.apollo3:apollo-runtime:3.0.0"
+    implementation 'com.apollographql.apollo:apollo-android-support:1.0.0'
 }

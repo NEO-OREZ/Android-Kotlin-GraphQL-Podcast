@@ -7,7 +7,6 @@
     android:layout_margin="4dp"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?selectableItemBackground"
     app:cardCornerRadius="10dp">
 
     <RelativeLayout
@@ -25,6 +24,7 @@
                 android:id="@+id/iv_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:src="@mipmap/ic_launcher_round" />
 
@@ -46,17 +46,6 @@
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_Date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:maxLength="10"
-                    android:maxLines="1"
-                    android:text="00/00/00" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -72,7 +61,7 @@
                     android:layout_marginStart="10dp"
                     android:maxLines="2"
                     android:text="This is a description"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="#808080"
                     android:textSize="12sp" />
             </LinearLayout>
 
