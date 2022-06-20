@@ -1,4 +1,4 @@
-package com.federicocotogno.JsonRetroSpotify
+package com.neo_orez.PodcastAppGraphql
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.federicocotogno.JsonRetroSpotify.adapters
+package com.neo_orez.PodcastAppGraphql.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.federicocotogno.JsonRetroSpotify.MainActivity
-import com.federicocotogno.JsonRetroSpotify.R
+import com.neo_orez.PodcastAppGraphql.MainActivity
+import com.neo_orez.PodcastAppGraphql.R
 import kotlinx.android.synthetic.main.item_layout.view.*
-import om.federicocotogno.JsonRetroSpotify.DataQuery
+import com.neo_orez.PodcastAppGraphql.DataQuery
 
 class RecyclerAdapter (val homefeed : List<DataQuery.Data1>): RecyclerView.Adapter<myViewHolder>() {
 

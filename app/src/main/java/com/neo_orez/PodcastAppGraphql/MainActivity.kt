@@ -1,4 +1,4 @@
-package com.federicocotogno.JsonRetroSpotify
+package com.neo_orez.PodcastAppGraphql
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,18 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 import com.apollographql.apollo3.network.okHttpClient
-import com.federicocotogno.JsonRetroSpotify.adapters.RecyclerAdapter
+import com.neo_orez.PodcastAppGraphql.adapters.RecyclerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
-import om.federicocotogno.JsonRetroSpotify.DataQuery
-import om.federicocotogno.JsonRetroSpotify.TokenMutation
-import om.federicocotogno.JsonRetroSpotify.type.*
+import com.neo_orez.PodcastAppGraphql.type.*
 
 
 class MainActivity : AppCompatActivity() {
