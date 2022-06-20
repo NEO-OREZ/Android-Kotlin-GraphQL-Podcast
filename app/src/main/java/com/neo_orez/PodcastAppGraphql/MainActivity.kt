@@ -48,9 +48,9 @@ class MainActivity : AppCompatActivity() {
         Log.d("apollo0", Token0)
         ApolloData(Token0)
 
-        ////////fetchJson with access_token
 
     }
+    ///////fetch Data with access_token
     suspend fun ApolloData(token0:String) {
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(AuthorizationInterceptor(token0))
@@ -68,8 +68,7 @@ class MainActivity : AppCompatActivity() {
                         PodcastSortType.FOLLOWER_COUNT,
                         direction = Optional.presentIfNotNull(SortDirection.DESCENDING)
                     )
-                ),
-                first = Optional.presentIfNotNull(10)
+                ), first = Optional.presentIfNotNull(10)
             )
         ).execute()
 
