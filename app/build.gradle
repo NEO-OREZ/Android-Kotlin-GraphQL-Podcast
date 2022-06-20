@@ -2,7 +2,6 @@
 plugins {
     id("com.apollographql.apollo3").version("3.0.0")
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'com.android.application'
 }
 apollo {
@@ -37,6 +36,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 }
 

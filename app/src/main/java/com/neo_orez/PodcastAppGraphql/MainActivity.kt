@@ -8,7 +8,7 @@ import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 import com.apollographql.apollo3.network.okHttpClient
 import com.neo_orez.PodcastAppGraphql.adapters.RecyclerAdapter
-import kotlinx.android.synthetic.main.activity_main.*
+import com.neo_orez.PodcastAppGraphql.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -23,16 +23,23 @@ class MainActivity : AppCompatActivity() {
     private var userKey = "96805445-8e2d-4aa4-8e3b-d64b9f8f0e75"
     private var userSecret = "K7FMi2EOkuz02YveOPyKnGZJAnwJCV0XX8BHTLge"
     private val BASEURL = "https://api.podchaser.com/graphql"
-    val launche = mutableListOf<DataQuery.Data1>()
+    private val launche = mutableListOf<DataQuery.Data1>()
     private val adapter0 = RecyclerAdapter(launche)
+    private lateinit var binding : ActivityMainBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
+        /////view binding
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        ////////////////
+
 
         GlobalScope.launch(Dispatchers.IO) { CallApollo() }
-        rv_recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.rvRecyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     suspend fun CallApollo() {
@@ -78,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
             launche.addAll(ResponseData)
             adapter0.notifyDataSetChanged()
-            rv_recyclerView.adapter = RecyclerAdapter(ResponseData)
+            binding.rvRecyclerView.adapter = RecyclerAdapter(ResponseData)
         }
     }
 }
