@@ -30,21 +30,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         GlobalScope.launch(Dispatchers.IO) {
-            val Token1 = CallRequest().CallApollo()
-            val data = CallRequest().ApolloData(Token1)
-            Log.d("apollo1", data.toString())
+            val GetToken = CallRequest().CallApollo()
+            val GetData = CallRequest().ApolloData(GetToken)
+            Log.d("apollo1", GetData.toString())
 
             withContext(Dispatchers.Main){
-                binding.rvRecyclerView.adapter = RecyclerAdapter(data)
+                binding.rvRecyclerView.adapter = RecyclerAdapter(GetData)
             }
         }
         binding.rvRecyclerView.layoutManager = LinearLayoutManager(this)
     }
 }
-
-//class AuthorizationInterceptor(val token: String) : HttpInterceptor {
-//    override suspend fun intercept(request: HttpRequest, chain: HttpInterceptorChain): HttpResponse {
-//        val Auth = chain.proceed(request.newBuilder().addHeader("Authorization", "Bearer $token").build())
-//        return Auth
-//    }
-//}
