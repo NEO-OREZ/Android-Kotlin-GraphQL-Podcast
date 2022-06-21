@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ma_nav"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.neo_orez.PodcastAppGraphql.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_firsFragment"
+            app:destination="@id/firsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/firsFragment"
+        android:name="com.neo_orez.PodcastAppGraphql.FirsFragment"
+        android:label="fragment_firs"
+        tools:layout="@layout/fragment_firs" >
+        <action
+            android:id="@+id/action_firsFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.neo_orez.PodcastAppGraphql.SecondFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_second" />
+</navigation>

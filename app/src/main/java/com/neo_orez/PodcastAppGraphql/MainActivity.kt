@@ -1,8 +1,11 @@
 package com.neo_orez.PodcastAppGraphql
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
@@ -30,13 +33,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
         /////view binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         ////////////////
-
+        binding.floatingActionButtonID.setOnClickListener {
+            val intent = Intent(this,TestActivity::class.java)
+            startActivity(intent)
+        }
 
         GlobalScope.launch(Dispatchers.IO) { CallApollo() }
         binding.rvRecyclerView.layoutManager = LinearLayoutManager(this)
