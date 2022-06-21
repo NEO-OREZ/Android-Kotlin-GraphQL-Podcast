@@ -1,16 +1,14 @@
 package com.neo_orez.PodcastAppGraphql
 
-import android.content.Intent
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.neo_orez.PodcastAppGraphql.adapters.RecyclerAdapter
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.neo_orez.PodcastAppGraphql.databinding.ActivityMainBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,20 +22,12 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         ////////////////
-        binding.floatingActionButtonID.setOnClickListener {
-            val intent = Intent(this,TestActivity::class.java)
-            startActivity(intent)
-        }
 
-        GlobalScope.launch(Dispatchers.IO) {
-            val GetToken = CallRequest().CallApollo()
-            val GetData = CallRequest().ApolloData(GetToken)
-            Log.d("apollo1", GetData.toString())
+        val bottomnavigation = findViewById<BottomNavigationView>(R.id.bottomNavViewID)
+        val navcontroller  = findNavController(R.id.fragmentContainerView)
+        val appbarConfig = AppBarConfiguration(setOf(R.id.firsFragment, R.id.secondFragment, R.id.mainFragment))
+        setupActionBarWithNavController(navcontroller, appbarConfig)
+        bottomnavigation.setupWithNavController(navcontroller)
 
-            withContext(Dispatchers.Main){
-                binding.rvRecyclerView.adapter = RecyclerAdapter(GetData)
-            }
-        }
-        binding.rvRecyclerView.layoutManager = LinearLayoutManager(this)
     }
 }

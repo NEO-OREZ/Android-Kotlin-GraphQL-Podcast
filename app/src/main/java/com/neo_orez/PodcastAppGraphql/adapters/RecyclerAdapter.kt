@@ -10,20 +10,16 @@ import com.neo_orez.PodcastAppGraphql.databinding.ItemLayoutBinding
 class RecyclerAdapter (val homefeed : List<DataQuery.Data1>): RecyclerView.Adapter<myViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
-        //val layoutinflater_var = LayoutInflater.from(parent.context)
-       // val cell_row = layoutinflater_var.inflate(R.layout.item_layout ,parent ,false )
         val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return myViewHolder(binding)
-        //return myViewHolder(cell_row)
     }
 
     override fun getItemCount(): Int {
-        val XYX = homefeed.size
-        return XYX
+        val XX = homefeed.size
+        return XX
     }
 
     override fun onBindViewHolder(holder: myViewHolder, position: Int) {
-
         val feedVar = homefeed[position]
         holder.binding.tvTitle.text = feedVar.title
         holder.binding.tvDescription.text = feedVar.description
