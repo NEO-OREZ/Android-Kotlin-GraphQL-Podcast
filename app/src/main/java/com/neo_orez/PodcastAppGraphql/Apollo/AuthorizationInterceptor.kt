@@ -1,4 +1,4 @@
-package com.neo_orez.PodcastAppGraphql
+package com.neo_orez.PodcastAppGraphql.Apollo
 
 import okhttp3.Interceptor
 import okhttp3.Response

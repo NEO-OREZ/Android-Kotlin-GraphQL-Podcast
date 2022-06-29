@@ -7,29 +7,26 @@ import com.bumptech.glide.Glide
 import com.neo_orez.PodcastAppGraphql.DataQuery
 import com.neo_orez.PodcastAppGraphql.databinding.ItemLayoutBinding
 
-class RecyclerAdapter (val homefeed : List<DataQuery.Data1>): RecyclerView.Adapter<myViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
+class RecyclerAdapter (private val homeFeed : List<DataQuery.Data1>): RecyclerView.Adapter<MyViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return myViewHolder(binding)
+        return MyViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
-        val XX = homefeed.size
-        return XX
+        return homeFeed.size
     }
 
-    override fun onBindViewHolder(holder: myViewHolder, position: Int) {
-        val feedVar = homefeed[position]
-        holder.binding.tvTitle.text = feedVar.title
-        holder.binding.tvDescription.text = feedVar.description
-        //holder.itemView.tv_url.text = feedVar.url.toString()
-        val thumbnail_one = holder.binding.ivImage
-        Glide.with(holder.itemView).load(feedVar.imageUrl).into(thumbnail_one)
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val feed2 = homeFeed[position]
+        holder.binding.tvTitle.text = feed2.title
+        holder.binding.tvDescription.text = feed2.description
+        val thumbnailOne = holder.binding.ivImage
+        Glide.with(holder.itemView).load(feed2.imageUrl).into(thumbnailOne)
     }
 }
 
-class myViewHolder(val binding: ItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+class MyViewHolder(val binding: ItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
 //    init {
 //        view.setOnClickListener {
