@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.neo_orez.PodcastAppGraphql.DataQuery
 import com.neo_orez.PodcastAppGraphql.databinding.ItemLayoutBinding
 
-class RecyclerAdapter (private val homeFeed : List<DataQuery.Data1>): RecyclerView.Adapter<MyViewHolder>() {
+class RecyclerAdapter (private val homeFeed : ArrayList<DataQuery.Data1>): RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)

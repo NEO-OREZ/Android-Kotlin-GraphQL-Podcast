@@ -1,0 +1,10 @@
+query DataQueryHot($filters: PodcastFilters) {
+    podcasts(filters: $filters) {
+        data {
+            title
+            description
+            imageUrl
+            url
+        }
+    }
+}

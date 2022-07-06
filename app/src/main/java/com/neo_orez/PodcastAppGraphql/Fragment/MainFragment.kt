@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.neo_orez.PodcastAppGraphql.Apollo.CallRequest
+import com.neo_orez.PodcastAppGraphql.ViewModel.MainFragViewModel
+import com.neo_orez.PodcastAppGraphql.ViewModel.MainViewModelFactory
 import com.neo_orez.PodcastAppGraphql.adapters.RecyclerAdapter
 import com.neo_orez.PodcastAppGraphql.databinding.FragmentMainBinding
 import kotlinx.coroutines.Dispatchers
@@ -18,26 +21,29 @@ import kotlinx.coroutines.withContext
 
 
 class MainFragment : Fragment() {
-
     lateinit var bindingMainFrag : FragmentMainBinding
-    lateinit var viewModel: MainFragViewModel
-    private var factory = MainViewModelFactory()
+    lateinit var viewModel : MainFragViewModel
+    var factory = MainViewModelFactory()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(this,factory).get(MainFragViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(MainFragViewModel::class.java)
 
         GlobalScope.launch(Dispatchers.IO) {
             val getToken = CallRequest().apolloToken()
-            val getData = CallRequest().apolloData(getToken)
-            Log.d("apollo1", getData.toString())
+            val getData = CallRequest().apolloDataFarsi(getToken)
+            Log.d("logfrag_Data",getData.toString())
 
             withContext(Dispatchers.Main){
-                bindingMainFrag.rvRecyclerView.layoutManager = LinearLayoutManager(context)
-                //viewModel.firstList.observe(this@MainFragment, Observer {
-                 //   bindingMainFrag.rvRecyclerView.adapter = RecyclerAdapter(getData) })
-                bindingMainFrag.rvRecyclerView.adapter = RecyclerAdapter(getData)
+                viewModel.xData(getData)
+
+                viewModel.dataListLive.observe(this@MainFragment, Observer {it->
+                    Log.d("logfrag_it",it.toString())
+                    bindingMainFrag.rvFragmain.layoutManager = LinearLayoutManager(context)
+                    bindingMainFrag.rvFragmain.adapter = RecyclerAdapter(it)
+
+                })
             }
         }
     }

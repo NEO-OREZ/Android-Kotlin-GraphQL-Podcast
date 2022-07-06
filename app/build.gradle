@@ -51,8 +51,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -66,8 +66,6 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
-    //added
-    implementation "com.expediagroup:graphql-kotlin-schema-generator:6.0.0-alpha.4"
     //Gson
     implementation "com.google.code.gson:gson:2.8.9"
 
@@ -78,8 +76,9 @@ dependencies {
 
     //graphql-apollo
     def ApolloVer = "3.3.1"
-    implementation "com.apollographql.apollo3:apollo-runtime:$ApolloVer"
+    implementation "com.expediagroup:graphql-kotlin-schema-generator:6.0.0-alpha.4"
     implementation 'com.apollographql.apollo:apollo-android-support:1.0.0'
+    implementation "com.apollographql.apollo3:apollo-runtime:$ApolloVer"
     implementation "com.apollographql.apollo3:apollo-normalized-cache:$ApolloVer"
     implementation "com.apollographql.apollo3:apollo-normalized-cache-sqlite:$ApolloVer"
 }

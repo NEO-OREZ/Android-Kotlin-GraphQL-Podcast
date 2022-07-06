@@ -19,13 +19,13 @@ class SplashScreen : AppCompatActivity() {
         ////////////
 
         bindingSplash.SplashLogoID.alpha=0f
-        bindingSplash.SplashLogoID.animate().setDuration(3000).alpha(1f).withEndAction {
+        bindingSplash.SplashLogoID.animate().setDuration(1000).alpha(1f).withEndAction {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.slide_out_right)
             finish()
         }
 
         bindingSplash.SplashTextID.alpha=0f
-        bindingSplash.SplashTextID.animate().setDuration(3000).alpha(1f).withEndAction{
+        bindingSplash.SplashTextID.animate().setDuration(1000).alpha(1f).withEndAction{
             val X = Intent(this, MainActivity::class.java)
             startActivity(X)
             overridePendingTransition(android.R.anim.fade_in , android.R.anim.fade_out )
