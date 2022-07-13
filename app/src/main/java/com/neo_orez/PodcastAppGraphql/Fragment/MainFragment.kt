@@ -29,7 +29,6 @@ class MainFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         viewModel = ViewModelProvider(this, factory).get(MainFragViewModel::class.java)
-
         GlobalScope.launch(Dispatchers.IO) {
             val getToken = CallRequest().apolloToken()
             val getData = CallRequest().apolloDataFarsi(getToken)
@@ -37,12 +36,10 @@ class MainFragment : Fragment() {
 
             withContext(Dispatchers.Main){
                 viewModel.xData(getData)
-
                 viewModel.dataListLive.observe(this@MainFragment, Observer {it->
                     Log.d("logfrag_it",it.toString())
                     bindingMainFrag.rvFragmain.layoutManager = LinearLayoutManager(context)
                     bindingMainFrag.rvFragmain.adapter = RecyclerAdapter(it)
-
                 })
             }
         }

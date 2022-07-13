@@ -28,7 +28,7 @@ class FirsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModelHot = ViewModelProvider(this,factoryHot).get(FirstFragViewModel::class.java)
+        viewModelHot = ViewModelProvider(this, factoryHot).get(FirstFragViewModel::class.java)
 
         GlobalScope.launch(Dispatchers.IO) {
             val getToken = CallRequest().apolloToken()

@@ -7,10 +7,12 @@ import com.apollographql.apollo3.cache.normalized.api.MemoryCacheFactory
 import com.apollographql.apollo3.cache.normalized.normalizedCache
 import com.apollographql.apollo3.cache.normalized.sql.SqlNormalizedCacheFactory
 import com.apollographql.apollo3.network.okHttpClient
+import com.neo_orez.PodcastAppGraphql.DataCategoriesQuery
 import com.neo_orez.PodcastAppGraphql.DataQuery
 import com.neo_orez.PodcastAppGraphql.DataQueryHotQuery
 import com.neo_orez.PodcastAppGraphql.TokenMutation
 import com.neo_orez.PodcastAppGraphql.adapters.RecyclerAdapter
+import com.neo_orez.PodcastAppGraphql.adapters.RecyclerAdapterCat
 import com.neo_orez.PodcastAppGraphql.adapters.RecyclerAdapterHot
 import com.neo_orez.PodcastAppGraphql.type.*
 import okhttp3.OkHttpClient
@@ -22,6 +24,8 @@ class CallRequest {
     private val baseURL = "https://api.podchaser.com/graphql"
     private val launch = ArrayList<DataQuery.Data1>()
     private val launchHot = ArrayList<DataQueryHotQuery.Data1>()
+    private val launchCat = ArrayList<DataCategoriesQuery.Data1>()
+
 
 
     suspend fun apolloToken(): String {
@@ -104,5 +108,41 @@ class CallRequest {
         launchHot.addAll(dataPods)
         RecyclerAdapterHot(launchHot).notifyDataSetChanged()
         return dataPods
+    }
+
+    suspend fun apolloDataCat(token0:String, categoryText:String?): ArrayList<DataCategoriesQuery.Data1>{
+        val cacheFactory = MemoryCacheFactory(maxSizeBytes = 20 * 1024 * 1024)
+        val sqlCacheFactory = SqlNormalizedCacheFactory("apollo_cat.db")
+        val categoryList = listOf(categoryText)
+
+        val okHttpClient = OkHttpClient.Builder()
+            .addInterceptor(AuthorizationInterceptor(token0))
+            .build()
+        val apolloClient2 = ApolloClient.Builder()
+            .serverUrl(baseURL)
+            .okHttpClient(okHttpClient)
+            .normalizedCache(cacheFactory)
+            .normalizedCache(sqlCacheFactory)
+            .build()
+        val responseDataCat = apolloClient2.query(
+            DataCategoriesQuery(
+                filters = Optional.presentIfNotNull(PodcastFilters(categories = Optional.presentIfNotNull(categoryList)))
+                , page = Optional.presentIfNotNull(1)
+                , first = Optional.presentIfNotNull(10)
+                , sort = Optional.presentIfNotNull(PodcastSort(
+                    PodcastSortType.FOLLOWER_COUNT, Optional.presentIfNotNull(
+                        SortDirection.safeValueOf("DESCENDING")
+                    )
+                ))
+            )
+        ).execute()
+
+        val  dataPods  = responseDataCat.data?.podcasts?.data as ArrayList
+        Log.d("logapolloCat",dataPods.toString())
+        launchCat.addAll(dataPods)
+        RecyclerAdapterCat(launchCat).notifyDataSetChanged()
+        return dataPods
+
+
     }
 }

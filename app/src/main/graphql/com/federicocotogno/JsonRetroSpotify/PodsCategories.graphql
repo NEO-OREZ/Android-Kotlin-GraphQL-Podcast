@@ -1,0 +1,9 @@
+query DataCategories($filters: PodcastFilters, $page: Int, $first: Int, $sort: PodcastSort) {
+    podcasts(filters: $filters, page: $page, first: $first, sort: $sort) {
+        data {
+            title
+            description
+            imageUrl
+        }
+    }
+}

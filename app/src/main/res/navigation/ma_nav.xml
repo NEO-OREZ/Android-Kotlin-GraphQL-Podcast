@@ -27,5 +27,14 @@
         android:id="@+id/secondFragment"
         android:name="com.neo_orez.PodcastAppGraphql.Fragment.SecondFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" />
+        tools:layout="@layout/fragment_second" >
+        <action
+            android:id="@+id/action_secondFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.neo_orez.PodcastAppGraphql.Fragment.CategoryFragment"
+        android:label="category_fragment"
+        tools:layout="@layout/category_fragment" />
 </navigation>

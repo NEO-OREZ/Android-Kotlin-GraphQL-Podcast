@@ -8,17 +8,17 @@ import com.neo_orez.PodcastAppGraphql.DataQueryHotQuery
 import com.neo_orez.PodcastAppGraphql.databinding.ItemLayoutBinding
 
 
-class RecyclerAdapterHot (private val homeFeed : ArrayList<DataQueryHotQuery.Data1>) : RecyclerView.Adapter<MyViewHolderHot>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolderHot {
+class RecyclerAdapterHot (private val homeFeed : ArrayList<DataQueryHotQuery.Data1>) : RecyclerView.Adapter<MyViewHolderCat>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolderCat {
         val bindingH = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolderHot(bindingH)
+        return MyViewHolderCat(bindingH)
     }
 
     override fun getItemCount(): Int {
         return homeFeed.size
     }
 
-    override fun onBindViewHolder(holderHot: MyViewHolderHot, position: Int) {
+    override fun onBindViewHolder(holderHot: MyViewHolderCat, position: Int) {
         val feed2 = homeFeed[position]
         holderHot.bindingH.tvTitle.text = feed2.title
         holderHot.bindingH.tvDescription.text = feed2.description
@@ -27,7 +27,7 @@ class RecyclerAdapterHot (private val homeFeed : ArrayList<DataQueryHotQuery.Dat
     }
 }
 
-class MyViewHolderHot(val bindingH: ItemLayoutBinding) : RecyclerView.ViewHolder(bindingH.root) {
+class MyViewHolderCat(val bindingH: ItemLayoutBinding) : RecyclerView.ViewHolder(bindingH.root) {
 
 //    init {
 //        view.setOnClickListener {
